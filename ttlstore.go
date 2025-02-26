@@ -3,7 +3,6 @@ package ttlstore
 import (
 	"encoding/base32"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/gorilla/securecookie"
@@ -56,11 +55,9 @@ var base32RawStdEncoding = base32.StdEncoding.WithPadding(base32.NoPadding)
 
 func (store *TTLStore) Save(r *http.Request, w http.ResponseWriter, session *sessions.Session) error {
 	if session.Options.MaxAge <= 0 {
-		log.Println("Removeing")
 		if err := store.erase(session); err != nil {
 			return err
 		}
-		log.Println("Removed")
 		http.SetCookie(w, sessions.NewCookie(session.Name(), "", session.Options))
 		return nil
 	}
