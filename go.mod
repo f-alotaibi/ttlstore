@@ -1,4 +1,4 @@
-module github.com/git-fal7/ttlstore
+module github.com/f-alotaibi/ttlstore
 
 go 1.24.0
 
